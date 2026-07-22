@@ -1,7 +1,7 @@
 import { computed, onScopeDispose, shallowRef } from 'vue';
 import type { ComputedRef } from 'vue';
-import { getDefaultTheme } from './core';
-import type { ResolvedTheme, Theme, ThemeController } from './core';
+import { getDefaultTheme } from '../core';
+import type { ResolvedTheme, Theme, ThemeController } from '../core';
 
 export interface UseThemeResult {
   theme: ComputedRef<Theme>;
@@ -30,4 +30,4 @@ export function useTheme(
   };
 }
 
-export type { Theme, ThemeController, ThemeState } from './core';
+export type { Theme, ThemeController, ThemeState } from '../core';

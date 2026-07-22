@@ -1,28 +1,20 @@
-export type Theme = 'light' | 'dark' | 'system';
+import type {
+  Attribute,
+  ResolvedTheme,
+  Theme,
+  ThemeController,
+  ThemeOptions,
+  ThemeState,
+} from './types';
 
-export type ResolvedTheme = 'light' | 'dark';
-
-export type Attribute = 'class' | (string & {});
-
-export interface ThemeState {
-  readonly theme: Theme;
-  readonly resolvedTheme: ResolvedTheme;
-  readonly systemTheme: ResolvedTheme;
-}
-
-export interface ThemeOptions {
-  storageKey?: string;
-  attribute?: Attribute;
-  defaultTheme?: Theme;
-}
-
-export interface ThemeController {
-  getState(): ThemeState;
-  subscribe(listener: () => void): () => void;
-  setTheme(theme: Theme): void;
-  toggle(): void;
-  destroy(): void;
-}
+export type {
+  Attribute,
+  ResolvedTheme,
+  Theme,
+  ThemeController,
+  ThemeOptions,
+  ThemeState,
+} from './types';
 
 const DEFAULT_STORAGE_KEY = 'theme';
 const DEFAULT_ATTRIBUTE: Attribute = 'data-theme';

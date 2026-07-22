@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from 'react';
-import { getDefaultTheme } from './core';
-import type { Theme, ThemeController, ThemeState } from './core';
+import { getDefaultTheme } from '../core';
+import type { Theme, ThemeController, ThemeState } from '../core';
 
 export interface UseThemeResult extends ThemeState {
   setTheme: (theme: Theme) => void;
@@ -23,4 +23,4 @@ export function useTheme(
   };
 }
 
-export type { Theme, ThemeController, ThemeState } from './core';
+export type { Theme, ThemeController, ThemeState } from '../core';

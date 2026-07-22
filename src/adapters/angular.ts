@@ -1,7 +1,7 @@
 import { signal } from '@angular/core';
 import type { Signal } from '@angular/core';
-import { getDefaultTheme } from './core';
-import type { Theme, ThemeController, ThemeState } from './core';
+import { getDefaultTheme } from '../core';
+import type { Theme, ThemeController, ThemeState } from '../core';
 
 export interface ThemeSignal {
   state: Signal<ThemeState>;
@@ -31,4 +31,4 @@ export function createThemeSignal(
   };
 }
 
-export type { Theme, ThemeController, ThemeState } from './core';
+export type { Theme, ThemeController, ThemeState } from '../core';

@@ -1,5 +1,5 @@
-import { getDefaultTheme } from './core';
-import type { Theme, ThemeController, ThemeState } from './core';
+import { getDefaultTheme } from '../core';
+import type { Theme, ThemeController, ThemeState } from '../core';
 
 export interface ThemeStore {
   subscribe(run: (value: ThemeState) => void): () => void;
@@ -21,4 +21,4 @@ export function themeStore(
   };
 }
 
-export type { Theme, ThemeController, ThemeState } from './core';
+export type { Theme, ThemeController, ThemeState } from '../core';
