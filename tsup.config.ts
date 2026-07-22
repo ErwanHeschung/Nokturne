@@ -4,6 +4,7 @@ export default defineConfig({
   entry: {
     core: 'src/core.ts',
     script: 'src/script.ts',
+    vite: 'src/vite.ts',
     'adapters/react': 'src/adapters/react.ts',
     'adapters/vue': 'src/adapters/vue.ts',
     'adapters/svelte': 'src/adapters/svelte.ts',

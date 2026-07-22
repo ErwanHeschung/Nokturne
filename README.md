@@ -40,16 +40,28 @@ npm install nokturne
 
 ### 1. Add the no-flash script
 
-The correct theme has to be on `<html>` before the page paints, which is before any module can load. So it ships as a small inline script for the top of `<head>`, ahead of everything else.
+The correct theme has to be on `<html>` before the page paints, which is before any module can load. So a small inline script has to run at the top of `<head>`, ahead of everything else. Pick whichever fits your setup.
+
+**Vite (recommended):** the plugin injects the script for you, kept in sync with your options.
+
+```ts
+// vite.config.ts
+import { nokturne } from 'nokturne/vite';
+
+export default defineConfig({
+  plugins: [nokturne()],
+});
+```
+
+**Server template or SSR framework:** render the tag into `<head>`.
 
 ```ts
 import { themeScriptTag } from 'nokturne/script';
 
-// Server template / document head:
 head.innerHTML += themeScriptTag();
 ```
 
-Prefer to paste it directly? This is the same output, with defaults shown:
+**No build step:** paste it directly (this is the same output, defaults shown).
 
 ```html
 <script>
@@ -83,7 +95,7 @@ theme.toggle();           // flip light and dark
 theme.subscribe(() => console.log(theme.getState().resolvedTheme));
 ```
 
-> **Keep options in sync.** Whatever you pass to `themeScriptTag` (`storageKey`, `attribute`, `defaultTheme`) has to match what you pass to `createTheme`.
+> **Keep options in sync.** Whatever you pass to the plugin or `themeScriptTag` (`storageKey`, `attribute`, `defaultTheme`) has to match what you pass to `createTheme`.
 
 ## Framework adapters
 
@@ -194,6 +206,12 @@ The shared instance the adapters use when you don't pass one. It is keyed on a g
 | ----------------------- | ------- | ----------- |
 | `themeScript(options?)` | `string` | The raw minified no-flash logic, with no `<script>` wrapper. |
 | `themeScriptTag(options?)` | `string` | A full `<script>…</script>` string. Accepts `{ nonce }` for CSP. |
+
+### `nokturne/vite`
+
+| Export | Description |
+| ------ | ----------- |
+| `nokturne(options?)` | Vite plugin that injects the no-flash script at the top of `<head>`. Takes the same `storageKey` / `attribute` / `defaultTheme` options. |
 
 ## How it works
 

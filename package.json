@@ -53,6 +53,16 @@
         "default": "./dist/script.cjs"
       }
     },
+    "./vite": {
+      "import": {
+        "types": "./dist/vite.d.ts",
+        "default": "./dist/vite.js"
+      },
+      "require": {
+        "types": "./dist/vite.d.cts",
+        "default": "./dist/vite.cjs"
+      }
+    },
     "./react": {
       "import": {
         "types": "./dist/adapters/react.d.ts",
@@ -114,9 +124,13 @@
   "peerDependencies": {
     "@angular/core": ">=17",
     "react": ">=18",
+    "vite": ">=5",
     "vue": ">=3"
   },
   "peerDependenciesMeta": {
+    "vite": {
+      "optional": true
+    },
     "@angular/core": {
       "optional": true
     },
@@ -139,6 +153,7 @@
     "size-limit": "^12.1.0",
     "tsup": "^8.5.1",
     "typescript": "^7.0.2",
+    "vite": "^8.1.5",
     "vue": "^3.5.40"
   }
 }
