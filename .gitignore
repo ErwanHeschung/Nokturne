@@ -6,3 +6,7 @@ dist/
 .vscode/
 coverage/
 *.tsbuildinfo
+
+# example app build artifacts
+.angular/
+out-tsc/
