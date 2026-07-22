@@ -10,6 +10,7 @@ export default defineConfig({
     'adapters/angular': 'src/adapters/angular.ts',
   },
   format: ['esm', 'cjs'],
+  target: 'es2022',
   dts: false,
   clean: true,
   splitting: true,
