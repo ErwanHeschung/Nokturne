@@ -30,3 +30,6 @@ jobs:
 
       - name: Lint package
         run: npm run lint:pkg
+
+      - name: Check type resolution
+        run: npm run check:types
