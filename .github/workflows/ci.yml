@@ -33,3 +33,6 @@ jobs:
 
       - name: Check type resolution
         run: npm run check:types
+
+      - name: Check bundle size
+        run: npm run size

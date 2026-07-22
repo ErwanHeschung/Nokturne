@@ -1,0 +1,35 @@
+[
+  {
+    "name": "core (nokturne)",
+    "path": "dist/core.js",
+    "limit": "850 B"
+  },
+  {
+    "name": "script (nokturne/script)",
+    "path": "dist/script.js",
+    "limit": "450 B"
+  },
+  {
+    "name": "react (nokturne/react)",
+    "path": "dist/adapters/react.js",
+    "ignore": ["react"],
+    "limit": "1 kB"
+  },
+  {
+    "name": "vue (nokturne/vue)",
+    "path": "dist/adapters/vue.js",
+    "ignore": ["vue"],
+    "limit": "1.1 kB"
+  },
+  {
+    "name": "svelte (nokturne/svelte)",
+    "path": "dist/adapters/svelte.js",
+    "limit": "900 B"
+  },
+  {
+    "name": "angular (nokturne/angular)",
+    "path": "dist/adapters/angular.js",
+    "ignore": ["@angular/core"],
+    "limit": "1 kB"
+  }
+]
