@@ -29,6 +29,7 @@ export function createTheme(options: ThemeOptions = {}): ThemeController {
   const storageKey = options.storageKey ?? DEFAULT_STORAGE_KEY;
   const attribute = options.attribute ?? DEFAULT_ATTRIBUTE;
   const defaultTheme = options.defaultTheme ?? DEFAULT_THEME;
+  const disableTransitionOnChange = options.disableTransitionOnChange ?? false;
 
   const isBrowser =
     typeof window !== 'undefined' && typeof document !== 'undefined';
@@ -78,6 +79,20 @@ export function createTheme(options: ThemeOptions = {}): ThemeController {
     el.style.colorScheme = resolved;
   };
 
+  // Wrap a DOM mutation so it paints without animating: inject a stylesheet
+  // that kills every transition, flush styles, then restore on the next tick.
+  const withoutTransitions = (mutate: () => void): void => {
+    const style = document.createElement('style');
+    style.appendChild(
+      document.createTextNode('*,*::before,*::after{transition:none!important}'),
+    );
+    document.head.appendChild(style);
+    mutate();
+    // Force a reflow so the mutation applies while transitions are still off.
+    window.getComputedStyle(document.documentElement);
+    setTimeout(() => style.remove(), 1);
+  };
+
   const recompute = (): void => {
     const next = build();
     if (
@@ -88,7 +103,8 @@ export function createTheme(options: ThemeOptions = {}): ThemeController {
       return;
     }
     snapshot = next;
-    apply();
+    if (isBrowser && disableTransitionOnChange) withoutTransitions(apply);
+    else apply();
     for (const listener of listeners) listener();
   };
 

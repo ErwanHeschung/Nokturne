@@ -21,6 +21,7 @@ export interface ThemeOptions {
   storageKey?: string;
   attribute?: Attribute;
   defaultTheme?: Theme;
+  disableTransitionOnChange?: boolean;
 }
 
 export interface ThemeController {

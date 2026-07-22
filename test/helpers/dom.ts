@@ -11,6 +11,7 @@ export interface DomHandle {
   store: Map<string, string>;
   setSystemDark(v: boolean): void;
   fireStorage(key: string | null, newValue: string | null): void;
+  headStyleCount(): number;
 }
 
 export function setupDom(
@@ -50,9 +51,20 @@ export function setupDom(
       changeListeners.delete(cb),
   });
 
+  const headStyles = new Set<object>();
+  const createElement = () => {
+    const el = { appendChild() {}, remove: () => headStyles.delete(el) };
+    return el;
+  };
+  const head = {
+    appendChild: (node: object) => headStyles.add(node),
+    removeChild: (node: object) => headStyles.delete(node),
+  };
+
   const g = globalThis as Record<string, unknown>;
   g.window = {
     matchMedia,
+    getComputedStyle: () => ({}),
     addEventListener: (type: string, cb: (e: never) => void) => {
       if (type === 'storage') storageListeners.add(cb as never);
     },
@@ -60,7 +72,7 @@ export function setupDom(
       if (type === 'storage') storageListeners.delete(cb as never);
     },
   };
-  g.document = { documentElement };
+  g.document = { documentElement, head, createElement, createTextNode: () => ({}) };
   g.localStorage = {
     getItem: (k: string) => (store.has(k) ? store.get(k)! : null),
     setItem: (k: string, v: string) => store.set(k, v),
@@ -79,6 +91,7 @@ export function setupDom(
     fireStorage(key, newValue) {
       for (const cb of storageListeners) cb({ key, newValue });
     },
+    headStyleCount: () => headStyles.size,
   };
 }
 

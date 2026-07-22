@@ -129,6 +129,24 @@ test('destroy detaches listeners', () => {
   assert.equal(calls, 0);
 });
 
+test('disableTransitionOnChange injects a transition-killing style, then removes it', (t) => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const dom = setupDom({ dark: false });
+  const theme = createTheme({ disableTransitionOnChange: true });
+  assert.equal(dom.headStyleCount(), 0);
+  theme.setTheme('dark');
+  assert.equal(dom.headStyleCount(), 1);
+  t.mock.timers.tick(5);
+  assert.equal(dom.headStyleCount(), 0);
+});
+
+test('no transition style is injected without the option', () => {
+  const dom = setupDom({ dark: false });
+  const theme = createTheme();
+  theme.setTheme('dark');
+  assert.equal(dom.headStyleCount(), 0);
+});
+
 test('is SSR-safe with no DOM present', () => {
   teardownDom();
   const t = createTheme({ defaultTheme: 'dark' });

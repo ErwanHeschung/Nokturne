@@ -68,6 +68,8 @@ body { background: var(--bg); color: var(--fg); }
 
 Prefer classes, like Tailwind's `dark:`? Pass `attribute: 'class'` and target `.dark` instead.
 
+If you animate colors with `transition`, pass `disableTransitionOnChange: true` to `createTheme` so switching themes does not animate every color at once.
+
 ### 3. Drive it from your app
 
 ```ts
@@ -162,6 +164,7 @@ export class ThemeService {
 | `storageKey`  | `string`                 | `'theme'`       | `localStorage` key used for persistence. |
 | `attribute`   | `string \| 'class'`      | `'data-theme'`  | Attribute set on `<html>` to `light`/`dark`. Use `'class'` to toggle `light`/`dark` classes instead. |
 | `defaultTheme`| `'light' \| 'dark' \| 'system'` | `'system'` | Theme used when nothing is stored. |
+| `disableTransitionOnChange` | `boolean`   | `false`         | Suppress CSS transitions for the frame the theme changes, so colors switch instantly instead of animating. |
 
 **`ThemeController`**
 
