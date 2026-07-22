@@ -34,45 +34,79 @@
   "types": "./dist/core.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/core.d.ts",
-      "import": "./dist/core.js",
-      "require": "./dist/core.cjs"
+      "import": {
+        "types": "./dist/core.d.ts",
+        "default": "./dist/core.js"
+      },
+      "require": {
+        "types": "./dist/core.d.cts",
+        "default": "./dist/core.cjs"
+      }
     },
     "./script": {
-      "types": "./dist/script.d.ts",
-      "import": "./dist/script.js",
-      "require": "./dist/script.cjs"
+      "import": {
+        "types": "./dist/script.d.ts",
+        "default": "./dist/script.js"
+      },
+      "require": {
+        "types": "./dist/script.d.cts",
+        "default": "./dist/script.cjs"
+      }
     },
     "./react": {
-      "types": "./dist/adapters/react.d.ts",
-      "import": "./dist/adapters/react.js",
-      "require": "./dist/adapters/react.cjs"
+      "import": {
+        "types": "./dist/adapters/react.d.ts",
+        "default": "./dist/adapters/react.js"
+      },
+      "require": {
+        "types": "./dist/adapters/react.d.cts",
+        "default": "./dist/adapters/react.cjs"
+      }
     },
     "./vue": {
-      "types": "./dist/adapters/vue.d.ts",
-      "import": "./dist/adapters/vue.js",
-      "require": "./dist/adapters/vue.cjs"
+      "import": {
+        "types": "./dist/adapters/vue.d.ts",
+        "default": "./dist/adapters/vue.js"
+      },
+      "require": {
+        "types": "./dist/adapters/vue.d.cts",
+        "default": "./dist/adapters/vue.cjs"
+      }
     },
     "./svelte": {
-      "types": "./dist/adapters/svelte.d.ts",
-      "import": "./dist/adapters/svelte.js",
-      "require": "./dist/adapters/svelte.cjs"
+      "import": {
+        "types": "./dist/adapters/svelte.d.ts",
+        "default": "./dist/adapters/svelte.js"
+      },
+      "require": {
+        "types": "./dist/adapters/svelte.d.cts",
+        "default": "./dist/adapters/svelte.cjs"
+      }
     },
     "./angular": {
-      "types": "./dist/adapters/angular.d.ts",
-      "import": "./dist/adapters/angular.js",
-      "require": "./dist/adapters/angular.cjs"
+      "import": {
+        "types": "./dist/adapters/angular.d.ts",
+        "default": "./dist/adapters/angular.js"
+      },
+      "require": {
+        "types": "./dist/adapters/angular.d.cts",
+        "default": "./dist/adapters/angular.cjs"
+      }
     },
     "./package.json": "./package.json"
   },
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
-    "build": "tsup && tsc -p tsconfig.build.json",
+    "build": "tsup && tsc -p tsconfig.build.json && node scripts/emit-cts-types.mjs",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "test": "node --test \"test/**/*.test.ts\"",
+    "lint:pkg": "publint",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
@@ -95,6 +129,7 @@
     "@angular/core": "^22.0.8",
     "@types/node": "^26.1.1",
     "@types/react": "^19.2.17",
+    "publint": "^0.3.21",
     "react": "^19.2.8",
     "rxjs": "^7.8.2",
     "tsup": "^8.5.1",
