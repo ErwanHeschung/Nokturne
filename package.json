@@ -1,0 +1,104 @@
+{
+  "name": "nokturne",
+  "version": "0.1.0",
+  "description": "Framework-agnostic, flash-free (no-FOUC) light/dark theming. ~1kb vanilla core with thin adapters for React, Vue, Svelte and Angular.",
+  "type": "module",
+  "sideEffects": false,
+  "license": "MIT",
+  "author": "Erwan Heschung",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ErwanHeschung/Nokturne.git"
+  },
+  "homepage": "https://github.com/ErwanHeschung/Nokturne#readme",
+  "bugs": {
+    "url": "https://github.com/ErwanHeschung/Nokturne/issues"
+  },
+  "keywords": [
+    "theme",
+    "theming",
+    "dark-mode",
+    "light-mode",
+    "no-flash",
+    "no-fouc",
+    "color-scheme",
+    "prefers-color-scheme",
+    "react",
+    "vue",
+    "svelte",
+    "angular",
+    "ssr"
+  ],
+  "main": "./dist/core.cjs",
+  "module": "./dist/core.js",
+  "types": "./dist/core.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.js",
+      "require": "./dist/core.cjs"
+    },
+    "./script": {
+      "types": "./dist/script.d.ts",
+      "import": "./dist/script.js",
+      "require": "./dist/script.cjs"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js",
+      "require": "./dist/react.cjs"
+    },
+    "./vue": {
+      "types": "./dist/vue.d.ts",
+      "import": "./dist/vue.js",
+      "require": "./dist/vue.cjs"
+    },
+    "./svelte": {
+      "types": "./dist/svelte.d.ts",
+      "import": "./dist/svelte.js",
+      "require": "./dist/svelte.cjs"
+    },
+    "./angular": {
+      "types": "./dist/angular.d.ts",
+      "import": "./dist/angular.js",
+      "require": "./dist/angular.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup && tsc -p tsconfig.build.json",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "@angular/core": ">=17",
+    "react": ">=18",
+    "vue": ">=3"
+  },
+  "peerDependenciesMeta": {
+    "@angular/core": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "vue": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@angular/core": "^22.0.8",
+    "@types/node": "^26.1.1",
+    "@types/react": "^19.2.17",
+    "react": "^19.2.8",
+    "rxjs": "^7.8.2",
+    "tsup": "^8.5.1",
+    "typescript": "^7.0.2",
+    "vue": "^3.5.40"
+  }
+}
