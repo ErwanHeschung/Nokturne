@@ -18,11 +18,8 @@ export interface ThemeState {
 }
 
 export interface ThemeOptions {
-  /** localStorage key. Default `"theme"`. */
   storageKey?: string;
-  /** Attribute to set to `light`/`dark`, or `"class"` to toggle classes. Default `"data-theme"`. */
   attribute?: Attribute;
-  /** Theme when nothing is stored. Default `"system"`. */
   defaultTheme?: Theme;
 }
 

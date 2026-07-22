@@ -72,7 +72,7 @@
     "build": "tsup && tsc -p tsconfig.build.json",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
-    "test": "node --test",
+    "test": "node --test \"test/**/*.test.ts\"",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {

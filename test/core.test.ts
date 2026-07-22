@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { afterEach, test } from 'node:test';
 import { createTheme } from '../src/core.ts';
-import { setupDom, teardownDom } from './dom.ts';
+import { setupDom, teardownDom } from './helpers/dom.ts';
 
 afterEach(teardownDom);
 
